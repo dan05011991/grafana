@@ -130,7 +130,7 @@ export class Logs extends PureComponent<Props, State> {
       ? dedupedRows.reduce((sum, row) => (row.duplicates ? sum + row.duplicates : sum), 0)
       : 0;
     const meta = logsMeta ? [...logsMeta] : [];
-console.log("Logs", meta)
+
     if (dedupStrategy !== LogsDedupStrategy.none) {
       meta.push({
         label: 'Dedup count',
