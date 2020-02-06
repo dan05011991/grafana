@@ -606,7 +606,7 @@ func getGitBranch() string {
 func getGitSha() string {
 	v, err := runError("git", "rev-parse", "--short", "HEAD")
 	if err != nil {
-		return "unknown-dev"
+		return "experimental"
 	}
 	return string(v)
 }

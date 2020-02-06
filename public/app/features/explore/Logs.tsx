@@ -193,12 +193,12 @@ export class Logs extends PureComponent<Props, State> {
         )}
 
         <LogRows
-          logRows={logRows}
+          logRows={logRows ? logRows.slice(0, 999) : logRows }
           deduplicatedRows={dedupedRows}
           dedupStrategy={dedupStrategy}
           getRowContext={this.props.getRowContext}
           highlighterExpressions={highlighterExpressions}
-          rowLimit={logRows ? logRows.length : undefined}
+          rowLimit={logRows ? (logRows.length > 1000 ? 1000 : logRows.length) : undefined}
           onClickFilterLabel={onClickFilterLabel}
           onClickFilterOutLabel={onClickFilterOutLabel}
           showTime={showTime}
