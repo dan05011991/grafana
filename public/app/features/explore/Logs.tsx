@@ -133,8 +133,8 @@ export class Logs extends PureComponent<Props, State> {
 
     let limit = 1000;
 
-    for(let i = 0; i < meta.length; i++) {
-      if(meta[i].label === 'Limit') {
+    for (let i = 0; i < meta.length; i++) {
+      if (meta[i].label === 'Limit') {
         limit = meta[i].value.split(' ')[0];
       }
     }
