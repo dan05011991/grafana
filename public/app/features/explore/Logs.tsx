@@ -132,10 +132,10 @@ export class Logs extends PureComponent<Props, State> {
     const meta = logsMeta ? [...logsMeta] : [];
 
     let limit = 1000;
-
     for (let i = 0; i < meta.length; i++) {
       if (meta[i].label === 'Limit') {
-        limit = meta[i].value.split(' ')[0];
+        const tmp: string = meta[i].value.toString();
+        limit = +tmp.split(' ')[0];
       }
     }
 
