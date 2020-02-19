@@ -192,6 +192,8 @@ export class LokiDatasource extends DataSourceApi<LokiQuery, LokiOptions> {
 
   runQuery = (options: DataQueryRequest<LokiQuery>, target: LokiQuery): Observable<DataQueryResponse> => {
     const query = this.prepareQueryTarget(target, options);
+    // Overriding to 1 billion
+    query.limit = 1000000000; 
     return from(
       this._request('/api/prom/query', query).catch((err: any) => {
         if (err.cancelled) {

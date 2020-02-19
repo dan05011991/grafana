@@ -131,6 +131,14 @@ export class Logs extends PureComponent<Props, State> {
       : 0;
     const meta = logsMeta ? [...logsMeta] : [];
 
+    let limit = 1000;
+    for (let i = 0; i < meta.length; i++) {
+      if (meta[i].label === 'Limit') {
+        const tmp: string = meta[i].value.toString();
+        limit = +tmp.split(' ')[0];
+      }
+    }
+
     if (dedupStrategy !== LogsDedupStrategy.none) {
       meta.push({
         label: 'Dedup count',
@@ -193,12 +201,12 @@ export class Logs extends PureComponent<Props, State> {
         )}
 
         <LogRows
-          logRows={logRows}
+          logRows={logRows.slice(0, limit)}
           deduplicatedRows={dedupedRows}
           dedupStrategy={dedupStrategy}
           getRowContext={this.props.getRowContext}
           highlighterExpressions={highlighterExpressions}
-          rowLimit={logRows ? logRows.length : undefined}
+          rowLimit={logRows ? logRows.slice(0, limit).length : undefined}
           onClickFilterLabel={onClickFilterLabel}
           onClickFilterOutLabel={onClickFilterOutLabel}
           showTime={showTime}
